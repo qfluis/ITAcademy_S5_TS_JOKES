@@ -1,4 +1,27 @@
+
+body {
+    margin-top: 0px;
+    background-color: grey;
+}
+
+main {    
+    height: 800px;
+    
+    background-image: url("/images/risitas.jpg");
+    background-repeat:no-repeat;
+    background-position:bottom right;
+
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    width:80%
+}
+
 #contenedor_chiste {
+    position:relative;
+    top: 2rem;   
+    border-radius: 1rem;
+    background-color: rgb(248, 255, 188);
     max-width: 500px;
     margin-left: auto;
     margin-right:auto;
@@ -14,7 +37,7 @@
 
 h1{
     text-align:center;
-    margin-top: 2rem;
+    /*margin-top: 2rem;*/
 }
 
 #chiste {
@@ -22,7 +45,37 @@ h1{
     text-align: center;
     font-size: 1.5rem;
 }
-/*
-#btn_chiste {
 
-}*/
+#btn_chiste {
+    background-color:rgb(108, 30, 128);
+    color:white;
+    padding:0.5rem;
+    border-radius: 0.5rem;
+    border: 0px;
+    cursor:pointer;
+    transition: background-color .30s ease-in-out;
+}
+
+#btn_chiste:hover {
+    background-color:rgb(255, 123, 0);    
+}
+
+#header_emoji{
+    display:flex;
+    width:100%;
+    
+    justify-content: center;
+    align-items: center;;
+    align-content: center;
+
+}
+#header_emoji h1 {
+    margin: 1rem;
+}
+.emoji {
+    width: 50px;
+    height:50px;
+    margin:1rem;
+    /*height: 100px;*/
+        /*flex-basis: 80px;*/
+}

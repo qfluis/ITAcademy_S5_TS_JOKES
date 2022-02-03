@@ -21,8 +21,7 @@ function cargarChiste(){
     fetch (API_URL, options)
         .then((response) => response.json())
         .then((joke)=>{
-            //HTMLResponse!.innerHTML = joke.joke;
-            console.log(joke.joke)
+            HTMLResponse!.innerHTML = joke.joke;
         });
     
 
