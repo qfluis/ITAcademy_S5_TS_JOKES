@@ -53,6 +53,7 @@ function cargarChiste():void{
             document.querySelector("#header_emoji h1")!.innerHTML = "Random dad joke";
             HTMLResponse!.innerHTML = joke.joke;
             displayVotes("visible");
+            changeBackground();
         });
     } else {
         // CHUCK NO NECESITA OPTIONS :)
@@ -62,13 +63,22 @@ function cargarChiste():void{
             document.querySelector("#header_emoji h1")!.innerHTML = "Chuck Norris Facts";
             HTMLResponse!.innerHTML = joke.value;
             displayVotes("visible");
+            changeBackground();
         });
-    }    
-      
-     
-    
-    
+    } 
+}
 
+let backgroundNum:number = 0;
+
+function changeBackground(){
+    const imagen:HTMLElement | null = document.getElementById("contenedor_chiste");
+    let aleatorio:number;
+    do {
+        aleatorio = Math.floor(Math.random()*5);
+    } while (aleatorio == backgroundNum);
+    backgroundNum = aleatorio;
+
+    imagen!.style.backgroundImage = `url('/images/backgrounds/${aleatorio}.png')`;
 }
 /*
 function switchDisplayVotes(){
@@ -97,7 +107,8 @@ function myWeather(myDiv: HTMLElement | null):void{
         .then((response) => response.json())
         .then((w)=>{
             console.log(w);
-            myDiv!.innerHTML = `${w.weather[0].description} - ${w.main.temp}ºC`;
+            myDiv!.innerHTML = `<img src="https://openweathermap.org/img/wn/${w.weather[0].icon}.png" > <strong>| ${w.main.temp}ºC</strong>`;
+            // info iconos https://openweathermap.org/weather-conditions
         });
     
 

@@ -5,45 +5,66 @@ body {
 }
 
 main {    
+    /* OLD STYLES
     height: 800px;
-    background-color: white;
-    
     background-image: url("/images/risitas.jpg");
     background-repeat:no-repeat;
     background-position:bottom right;
     background-size:250px;
+    */
+    
+    background-color: white;
+    
+    
     
     max-width: 1200px;
     margin-right: auto;
     margin-left: auto;
-    width:80%
+    width:100%;    
 }
 
 #myWeather {
     padding: 0.5rem 0rem 0rem 0.5rem;
+    display:flex;
+    align-items: center;
 }
 
 #contenedor_chiste {
+      
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 3rem;
+
+    /* OLD STYLES
     position:relative;
-    top: 2rem;   
+    top: 2rem; 
     border-radius: 1rem;
     background-color: rgb(248, 255, 188);
     max-width: 500px;
     margin-left: auto;
     margin-right:auto;
     border: 0.1rem solid rgb(155, 155, 155);
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 3rem;
-
     box-shadow: 0.1rem 0.1rem 0.5rem 0.1rem rgb(155, 155, 155);
+    */
+    /* BLOB STYLES*/
+    background-image: url("/images/backgrounds/0.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    transition: background-image .30s ease-in-out;
+    padding-bottom: 35rem;
+    
+
+    
 }
 
 #contenedor_chiste h3 {
     visibility:hidden;
     width:100%;
     text-align: center;
+    color:white;
 }
 #contenedor_chiste h3 span{
     font-size: 0.8em;
@@ -57,10 +78,11 @@ h1{
 }
 
 #chiste {
-    width: 80%;
+    width: 40%;
     min-height:100px;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    color: white;
 }
 #valoracion {
     margin-bottom: 1rem;
@@ -69,6 +91,8 @@ h1{
     display:flex;
     justify-content: center;
     align-items: center;    
+
+    
 }
 
 #valoracion img {
@@ -91,6 +115,7 @@ h1{
 }
 
 #header_emoji{
+    
     display:flex;
     width:100%;
     
@@ -98,14 +123,9 @@ h1{
     align-items: center;;
     align-content: center;
 
+    color:white;
+
 }
 #header_emoji h1 {
     margin: 1rem;
-}
-.emoji {
-    width: 50px;
-    height:50px;
-    margin:1rem;
-    /*height: 100px;*/
-        /*flex-basis: 80px;*/
 }
