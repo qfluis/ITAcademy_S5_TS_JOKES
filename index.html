@@ -5,11 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="js/scripts.js"></script>
+    <script src="js/scripts.js" defer></script>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Chistodromo</h1>
-    <div id="chiste"></div>
-    <button id="btn_chiste">¡Dame un chiste!</button>
+    <!--<header></header>-->
+    <main>
+        <div id="myWeather">Loading weather...</div>
+        <section id="contenedor_chiste">
+            <div id="header_emoji"><h1>Preparat per riure?</h1></div>
+            <p id="chiste"></p>
+            <h3>vote<span>(clicking the emoji)</span>:</h3>
+            <div id="valoracion">
+                <a href="#"><img src="images/btn_1.png" alt="1" title="puaj"></a>
+                <a href="#"><img src="images/btn_2.png" alt="2" title="mmmm"></a>
+                <a href="#"><img src="images/btn_3.png" alt="3" title="LOL"></a>
+            </div>
+            <button id="btn_chiste">¡Give me a joke!</button>
+        </section>
+    </main>
 </body>
 </html>

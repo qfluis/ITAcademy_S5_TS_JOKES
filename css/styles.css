@@ -1,0 +1,105 @@
+
+body {
+    margin-top: 0px;
+    background-color: grey;
+}
+
+main {    
+    background-color: white;
+       
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    width:100%;    
+}
+
+#myWeather {
+    padding: 0.5rem 0rem 0rem 0.5rem;
+    display:flex;
+    align-items: center;
+}
+
+#contenedor_chiste {
+      
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 3rem;
+
+    background-image: url("/images/backgrounds/0.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    transition: background-image .30s ease-in-out;
+    padding-bottom: 35rem;
+    
+
+    
+}
+
+#contenedor_chiste h3 {
+    visibility:hidden;
+    width:100%;
+    text-align: center;
+    color:white;
+}
+#contenedor_chiste h3 span{
+    font-size: 0.8em;
+    font-weight: lighter;
+}
+
+
+h1{
+    text-align:center;
+}
+
+#chiste {
+    width: 40%;
+    min-height:100px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: white;
+}
+#valoracion {
+    margin-bottom: 1rem;
+    visibility:hidden;
+    width:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;        
+}
+
+#valoracion img {
+    width:50px;
+    height:50px;
+}
+
+#btn_chiste {
+    background-color:rgb(108, 30, 128);
+    color:white;
+    padding:0.5rem;
+    border-radius: 0.5rem;
+    border: 0px;
+    cursor:pointer;
+    transition: background-color .30s ease-in-out;
+}
+
+#btn_chiste:hover {
+    background-color:rgb(255, 123, 0);    
+}
+
+#header_emoji{
+    
+    display:flex;
+    width:100%;
+    
+    justify-content: center;
+    align-items: center;;
+    align-content: center;
+
+    color:white;
+}
+#header_emoji h1 {
+    margin: 1rem;
+}
