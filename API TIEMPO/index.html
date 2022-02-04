@@ -1,0 +1,4767 @@
+<!doctype html>
+<html>
+  <head>
+    <title>AEMET OpenData</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>AEMET OpenData</h1>
+    <div class="app-desc">AEMET OpenData es una API REST desarrollado por AEMET que permite la difusión y la reutilización de la información meteorológica y climatológica de la Agencia, en el sentido indicado en la Ley 18/2015, de 9 de julio, por la que se modifica la Ley 37/2007, de 16 de noviembre, sobre reutilización de la información del sector público. (IMPORTANTE: Para poder realizar peticiones, es necesario introducir en API Key haciendo clic en el círculo rojo de recurso REST).</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
+    <div class="app-desc">Version: 2.0</div>
+    <div class="app-desc">BasePath:/opendata</div>
+    <div class="license-info">Condiciones de uso de reutilización</div>
+    <div class="license-url">http://www.aemet.es/es/nota_legal</div>
+  <h2>Access</h2>
+    <ol>
+      <li>APIKey KeyParamName:api_key KeyInQuery:false KeyInHeader:true</li>
+    </ol>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#AvisosCap">AvisosCap</a></h4>
+  <ul>
+  <li><a href="#avisos de Fenómenos Meteorológicos Adversos. Archivo"><code><span class="http-method">get</span> /api/avisos_cap/archivo/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}</code></a></li>
+  <li><a href="#avisos de Fenómenos Meteorológicos Adversos. Último."><code><span class="http-method">get</span> /api/avisos_cap/ultimoelaborado/area/{area}</code></a></li>
+  </ul>
+  <h4><a href="#IndicesIncendios">IndicesIncendios</a></h4>
+  <ul>
+  <li><a href="#mapa de niveles de riesgo estimado meteorológico de incendios forestales."><code><span class="http-method">get</span> /api/incendios/mapasriesgo/estimado/area/{area}</code></a></li>
+  <li><a href="#mapa de niveles de riesgo previsto meteorológico de incendios forestales."><code><span class="http-method">get</span> /api/incendios/mapasriesgo/previsto/dia/{dia}/area/{area}</code></a></li>
+  </ul>
+  <h4><a href="#InformacionSatelite">InformacionSatelite</a></h4>
+  <ul>
+  <li><a href="#temperatura del agua del mar."><code><span class="http-method">get</span> /api/satelites/producto/sst</code></a></li>
+  <li><a href="#índice normalizado de vegetación."><code><span class="http-method">get</span> /api/satelites/producto/nvdi</code></a></li>
+  </ul>
+  <h4><a href="#Maestro">Maestro</a></h4>
+  <ul>
+  <li><a href="#getMunicipioUsingGET"><code><span class="http-method">get</span> /api/maestro/municipio/{municipio}</code></a></li>
+  <li><a href="#getMunicipiosUsingGET"><code><span class="http-method">get</span> /api/maestro/municipios</code></a></li>
+  </ul>
+  <h4><a href="#MapasYGraficos">MapasYGraficos</a></h4>
+  <ul>
+  <li><a href="#mapas de análisis. Última pasada."><code><span class="http-method">get</span> /api/mapasygraficos/analisis</code></a></li>
+  <li><a href="#mapas significativos. Tiempo actual."><code><span class="http-method">get</span> /api/mapasygraficos/mapassignificativos/fecha/{fecha}/{ambito}/{dia}</code></a></li>
+  <li><a href="#mapas significativos. Tiempo actual.1"><code><span class="http-method">get</span> /api/mapasygraficos/mapassignificativos/{ambito}/{dia}</code></a></li>
+  </ul>
+  <h4><a href="#ObservacionConvencional">ObservacionConvencional</a></h4>
+  <ul>
+  <li><a href="#datos de observación. Tiempo actual."><code><span class="http-method">get</span> /api/observacion/convencional/todas</code></a></li>
+  <li><a href="#datos de observación. Tiempo actual.1"><code><span class="http-method">get</span> /api/observacion/convencional/datos/estacion/{idema}</code></a></li>
+  <li><a href="#mensajes de observación. Último elaborado."><code><span class="http-method">get</span> /api/observacion/convencional/mensajes/tipomensaje/{tipomensaje}</code></a></li>
+  </ul>
+  <h4><a href="#PrediccionMaritima">PrediccionMaritima</a></h4>
+  <ul>
+  <li><a href="#predicción marítima costera."><code><span class="http-method">get</span> /api/prediccion/maritima/costera/costa/{costa}</code></a></li>
+  <li><a href="#predicción marítima de alta mar."><code><span class="http-method">get</span> /api/prediccion/maritima/altamar/area/{area}</code></a></li>
+  </ul>
+  <h4><a href="#PrediccionesEspecificas">PrediccionesEspecificas</a></h4>
+  <ul>
+  <li><a href="#informacion nivologica."><code><span class="http-method">get</span> /api/prediccion/especifica/nivologica/{area}</code></a></li>
+  <li><a href="#predicción de montaña. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/especifica/montaña/pasada/area/{area}/dia/{dia}</code></a></li>
+  <li><a href="#predicción de montaña. Tiempo pasado."><code><span class="http-method">get</span> /api/prediccion/especifica/montaña/pasada/area/{area}</code></a></li>
+  <li><a href="#predicción de radiación ultravioleta (UVI)."><code><span class="http-method">get</span> /api/prediccion/especifica/uvi/{dia}</code></a></li>
+  <li><a href="#predicción para las playas. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/especifica/playa/{playa}</code></a></li>
+  <li><a href="#predicción por municipios diaria. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/especifica/municipio/diaria/{municipio}</code></a></li>
+  <li><a href="#predicción por municipios horaria. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/especifica/municipio/horaria/{municipio}</code></a></li>
+  </ul>
+  <h4><a href="#PrediccionesNormalizadasTexto">PrediccionesNormalizadasTexto</a></h4>
+  <ul>
+  <li><a href="#predicción CCAA hoy. Archivo."><code><span class="http-method">get</span> /api/prediccion/ccaa/hoy/{ccaa}/elaboracion/{fecha}</code></a></li>
+  <li><a href="#predicción CCAA hoy. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/ccaa/hoy/{ccaa}</code></a></li>
+  <li><a href="#predicción CCAA mañana. Archivo."><code><span class="http-method">get</span> /api/prediccion/ccaa/manana/{ccaa}/elaboracion/{fecha}</code></a></li>
+  <li><a href="#predicción CCAA mañana. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/ccaa/manana/{ccaa}</code></a></li>
+  <li><a href="#predicción CCAA medio plazo. Archivo."><code><span class="http-method">get</span> /api/prediccion/ccaa/medioplazo/{ccaa}/elaboracion/{fecha}</code></a></li>
+  <li><a href="#predicción CCAA medio plazo. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/ccaa/medioplazo/{ccaa}</code></a></li>
+  <li><a href="#predicción CCAA pasado mañana. Archivo."><code><span class="http-method">get</span> /api/prediccion/ccaa/pasadomanana/{ccaa}/elaboracion/{fecha}</code></a></li>
+  <li><a href="#predicción CCAA pasado mañana. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/ccaa/pasadomanana/{ccaa}</code></a></li>
+  <li><a href="#predicción nacional hoy. Archivo."><code><span class="http-method">get</span> /api/prediccion/nacional/hoy/elaboracion/{fecha}</code></a></li>
+  <li><a href="#predicción nacional hoy. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/nacional/hoy</code></a></li>
+  <li><a href="#predicción nacional mañana. Archivo."><code><span class="http-method">get</span> /api/prediccion/nacional/manana/elaboracion/{fecha}</code></a></li>
+  <li><a href="#predicción nacional mañana. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/nacional/manana</code></a></li>
+  <li><a href="#predicción nacional medio plazo. Archivo."><code><span class="http-method">get</span> /api/prediccion/nacional/medioplazo/elaboracion/{fecha}</code></a></li>
+  <li><a href="#predicción nacional medio plazo. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/nacional/medioplazo</code></a></li>
+  <li><a href="#predicción nacional pasado mañana. Archivo."><code><span class="http-method">get</span> /api/prediccion/nacional/pasadomanana/elaboracion/{fecha}</code></a></li>
+  <li><a href="#predicción nacional pasado mañana. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/nacional/pasadomanana</code></a></li>
+  <li><a href="#predicción nacional tendencia. Archivo."><code><span class="http-method">get</span> /api/prediccion/nacional/tendencia/elaboracion/{fecha}</code></a></li>
+  <li><a href="#predicción nacional tendencia. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/nacional/tendencia</code></a></li>
+  <li><a href="#predicción provincia hoy. Archivo."><code><span class="http-method">get</span> /api/prediccion/provincia/hoy/{provincia}/elaboracion/{fecha}</code></a></li>
+  <li><a href="#predicción provincia hoy. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/provincia/hoy/{provincia}</code></a></li>
+  <li><a href="#predicción provincia mañana. Archivo."><code><span class="http-method">get</span> /api/prediccion/provincia/manana/{provincia}/elaboracion/{fecha}</code></a></li>
+  <li><a href="#predicción provincia mañana. Tiempo actual."><code><span class="http-method">get</span> /api/prediccion/provincia/manana/{provincia}</code></a></li>
+  </ul>
+  <h4><a href="#ProductosClimatologicos">ProductosClimatologicos</a></h4>
+  <ul>
+  <li><a href="#balance hídrico nacional (documento)."><code><span class="http-method">get</span> /api/productos/climatologicos/balancehidrico/{anio}/{decena}</code></a></li>
+  <li><a href="#capas SHAPE de estaciones climatológicas."><code><span class="http-method">get</span> /api/productos/climatologicos/capasshape/{tipoestacion}</code></a></li>
+  <li><a href="#resumen mensual climatológico nacional (documento)."><code><span class="http-method">get</span> /api/productos/climatologicos/resumenclimatologico/nacional/{anio}/{mes}</code></a></li>
+  </ul>
+  <h4><a href="#RedRadares">RedRadares</a></h4>
+  <ul>
+  <li><a href="#imagen composición nacional radares. Tiempo actual estándar."><code><span class="http-method">get</span> /api/red/radar/nacional</code></a></li>
+  <li><a href="#radar Regional"><code><span class="http-method">get</span> /api/red/radar/regional/{radar}</code></a></li>
+  </ul>
+  <h4><a href="#RedRayos">RedRayos</a></h4>
+  <ul>
+  <li><a href="#mapa con los rayos registrados en periodo standard. Último elaborado."><code><span class="http-method">get</span> /api/red/rayos/mapa</code></a></li>
+  </ul>
+  <h4><a href="#RedesEspeciales">RedesEspeciales</a></h4>
+  <ul>
+  <li><a href="#contenido total de ozono. Tiempo actual."><code><span class="http-method">get</span> /api/red/especial/ozono</code></a></li>
+  <li><a href="#datos de contaminación de fondo. Tiempo actual."><code><span class="http-method">get</span> /api/red/especial/contaminacionfondo/estacion/{nombre_estacion}</code></a></li>
+  <li><a href="#datos de radiación global, directa o difusa. Tiempo actual."><code><span class="http-method">get</span> /api/red/especial/radiacion</code></a></li>
+  <li><a href="#perfiles verticales de ozono. Tiempo actual."><code><span class="http-method">get</span> /api/red/especial/perfilozono/estacion/{estacion}</code></a></li>
+  </ul>
+  <h4><a href="#ValoresClimatologicos">ValoresClimatologicos</a></h4>
+  <ul>
+  <li><a href="#climatologías diarias."><code><span class="http-method">get</span> /api/valores/climatologicos/diarios/datos/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}/estacion/{idema}</code></a></li>
+  <li><a href="#climatologías diarias.1"><code><span class="http-method">get</span> /api/valores/climatologicos/diarios/datos/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}/todasestaciones</code></a></li>
+  <li><a href="#climatologías mensuales anuales."><code><span class="http-method">get</span> /api/valores/climatologicos/mensualesanuales/datos/anioini/{anioIniStr}/aniofin/{anioFinStr}/estacion/{idema}</code></a></li>
+  <li><a href="#climatologías normales (19812010)."><code><span class="http-method">get</span> /api/valores/climatologicos/normales/estacion/{idema}</code></a></li>
+  <li><a href="#estaciones por indicativo."><code><span class="http-method">get</span> /api/valores/climatologicos/inventarioestaciones/estaciones/{estaciones}</code></a></li>
+  <li><a href="#inventario de estaciones (valores climatológicos)."><code><span class="http-method">get</span> /api/valores/climatologicos/inventarioestaciones/todasestaciones</code></a></li>
+  <li><a href="#valores extremos."><code><span class="http-method">get</span> /api/valores/climatologicos/valoresextremos/parametro/{parametro}/estacion/{idema}</code></a></li>
+  </ul>
+
+  <h1><a name="AvisosCap">AvisosCap</a></h1>
+  <div class="method"><a name="avisos de Fenómenos Meteorológicos Adversos. Archivo"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/avisos_cap/archivo/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}</code></pre></div>
+    <div class="method-summary">Avisos de Fenómenos Meteorológicos Adversos. Archivo. (<span class="nickname">avisos de Fenómenos Meteorológicos Adversos. Archivo</span>)</div>
+    <div class="method-notes">Avisos de Fenómenos Meteorológicos adversos para el rango de fechas seleccionado (datos desde 18/06/2018).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">fechaIniStr (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Fecha Inicial (AAAA-MM-DDTHH:MM:SSUTC) </div><div class="param">fechaFinStr (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Fecha Final (AAAA-MM-DDTHH:MM:SSUTC) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="avisos de Fenómenos Meteorológicos Adversos. Último."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/avisos_cap/ultimoelaborado/area/{area}</code></pre></div>
+    <div class="method-summary">Avisos de Fenómenos Meteorológicos Adversos. Último. (<span class="nickname">avisos de Fenómenos Meteorológicos Adversos. Último.</span>)</div>
+    <div class="method-notes">Últimos Avisos de Fenómenos Meteorológicos adversos elaborado para el área seleccionada.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">area (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Área |
+|----------|----------|
+| esp  | España|
+| 61  | Andalucía   |
+| 62  | Aragón   |
+| 63  | Asturias, Principado de  |
+| 64  | Ballears, Illes   |
+| 78  | Ceuta   |
+| 65  | Canarias   |
+| 66  | Cantabria   |
+| 67  | Castilla y León   |
+| 68  | Castilla - La Mancha   |
+| 69  | Cataluña   |
+| 77  | Comunitat Valenciana   |
+| 70  | Extremadura   |
+| 71  | Galicia   |
+| 72  | Madrid, Comunidad de    |
+| 79  | Melilla   |
+| 73  | Murcia, Región de   |
+| 74  | Navarra, Comunidad Foral de   |
+| 75  | País Vasco |
+| 76  | Rioja, La </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="IndicesIncendios">IndicesIncendios</a></h1>
+  <div class="method"><a name="mapa de niveles de riesgo estimado meteorológico de incendios forestales."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/incendios/mapasriesgo/estimado/area/{area}</code></pre></div>
+    <div class="method-summary">Mapa de niveles de riesgo estimado meteorológico de incendios forestales. (<span class="nickname">mapa de niveles de riesgo estimado meteorológico de incendios forestales.</span>)</div>
+    <div class="method-notes">Último mapa elaborado de niveles de riesgo estimado meteorológico de incendios forestales para el área pasada por parámetro.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">area (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Área |
+|----------|----------|
+| p  | Península   |
+| b  | Baleares   |
+| c  | Canarias </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="mapa de niveles de riesgo previsto meteorológico de incendios forestales."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/incendios/mapasriesgo/previsto/dia/{dia}/area/{area}</code></pre></div>
+    <div class="method-summary">Mapa de niveles de riesgo previsto meteorológico de incendios forestales. (<span class="nickname">mapa de niveles de riesgo previsto meteorológico de incendios forestales.</span>)</div>
+    <div class="method-notes">Mapa elaborado de niveles de riesgo estimado meteorológico de incendios forestales para el día y el área pasados por parámetro.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">dia (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Día |
+|----------|----------|
+| 1  | Mañana   |
+| 2  | Pasado Mañana   |
+| 3  | Dentro de 3 días </div><div class="param">area (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Área |
+|----------|----------|
+| p  | Península   |
+| b  | Baleares   |
+| c  | Canarias </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="InformacionSatelite">InformacionSatelite</a></h1>
+  <div class="method"><a name="temperatura del agua del mar."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/satelites/producto/sst</code></pre></div>
+    <div class="method-summary">Temperatura del agua del mar. (<span class="nickname">temperatura del agua del mar.</span>)</div>
+    <div class="method-notes">Imagen obtenida con una combinación de los datos de los canales infrarrojos del satélite NOAA-19, que nos da la temperatura de la superficie del mar. Esta imagen se renueva todos los días a última hora y contiene los datos acumulados de los últimos siete días.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="índice normalizado de vegetación."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/satelites/producto/nvdi</code></pre></div>
+    <div class="method-summary">Índice normalizado de vegetación. (<span class="nickname">índice normalizado de vegetación.</span>)</div>
+    <div class="method-notes">Esta imagen se realiza con una combinación de los datos del canal visible y del infrarrojo cercano del satélite NOAA-19, que nos da una idea del desarrollo de la vegetación. Esto es así debido a que la vegetación absorbe fuertemente la radiación del canal visible, pero refleja fuertemente la del infrarrojo cercano. Esta imagen se renueva los jueves a última hora y contiene los datos acumulados de la última semana.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Maestro">Maestro</a></h1>
+  <div class="method"><a name="getMunicipioUsingGET"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/maestro/municipio/{municipio}</code></pre></div>
+    <div class="method-summary">getMunicipio (<span class="nickname">getMunicipioUsingGET</span>)</div>
+    <div class="method-notes">Retorna información específica del municipio de España que se le pasa como parámetro.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">municipio (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Municipio </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getMunicipiosUsingGET"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/maestro/municipios</code></pre></div>
+    <div class="method-summary">getMunicipios (<span class="nickname">getMunicipiosUsingGET</span>)</div>
+    <div class="method-notes">Retorna todos los municipios de España. Este servicio es útil para obtener información para utilizar otros elementos de AEMET OpenData, como por ejemplo, la predicción de municipios para 7 días o por  horas ya que nos retorna el id del municipio que necesitamos.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="MapasYGraficos">MapasYGraficos</a></h1>
+  <div class="method"><a name="mapas de análisis. Última pasada."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/mapasygraficos/analisis</code></pre></div>
+    <div class="method-summary">Mapas de análisis. Última pasada. (<span class="nickname">mapas de análisis. Última pasada.</span>)</div>
+    <div class="method-notes">Estos mapas muestran la configuración de la presión en superficie usando isobaras (lineas de igual presión), áreas de alta (A, a) y baja (B, b) presión y los frentes en Europa y el Atlántico Norte.El mapa de análisis presenta el estado de la atmósfera a la hora correspondiente y los fenómenos más relevantes observados en España. Periodicidad de actualización: cada 12 horas (00, 12).</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="mapas significativos. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/mapasygraficos/mapassignificativos/fecha/{fecha}/{ambito}/{dia}</code></pre></div>
+    <div class="method-summary">Mapas significativos. Tiempo actual. (<span class="nickname">mapas significativos. Tiempo actual.</span>)</div>
+    <div class="method-notes">Mapas significativos de ámbito nacional o CCAA, para una fecha dada y ese mismo día (D+0),  al día siguiente (D+1) o a los dos días (D+2), en el periodo horario de (00_12) ó (12-24).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">fecha (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Fecha de elaboración (AAAA-MM-DD) </div><div class="param">ambito (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Ámbito |
+|----------|----------|
+| esp  | España|
+| and  | Andalucía   |
+| arn  | Aragón   |
+| ast  | Asturias  |
+| bal  | Ballears, Illes   |
+| coo  | Canarias   |
+| can  | Cantabria   |
+| cle  | Castilla y León   |
+| clm  | Castilla - La Mancha   |
+| cat  | Cataluña   |
+| val  | Comunitat Valenciana   |
+| ext  | Extremadura   |
+| gal  | Galicia   |
+| mad  | Madrid, Comunidad de    |
+| mur  | Murcia, Región de   |
+| nav  | Navarra, Comunidad Foral de   |
+| pva  | País Vasco |
+| rio  | Rioja, La </div><div class="param">dia (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de día | Día |
+|----------|----------|
+| a | D+0 (00-12)  |
+| b  | D+0 (00-12)   |
+|  c | D+1 (00-12)  |
+| d  | D+1 (12-24) |
+| e  | D+2 (00-12) |
+| f  | D+2 (12-24) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="mapas significativos. Tiempo actual.1"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/mapasygraficos/mapassignificativos/{ambito}/{dia}</code></pre></div>
+    <div class="method-summary">Mapas significativos. Tiempo actual. (<span class="nickname">mapas significativos. Tiempo actual.1</span>)</div>
+    <div class="method-notes">Mapas significativos de ámbito nacional o CCAA, para el día actual (D+0),  al día siguiente (D+1) o a los dos días (D+2), en el periodo horario de (00_12) ó (12-24).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">ambito (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Ámbito |
+|----------|----------|
+| esp  | España|
+| and  | Andalucía   |
+| arn  | Aragón   |
+| ast  | Asturias  |
+| bal  | Ballears, Illes   |
+| coo  | Canarias   |
+| can  | Cantabria   |
+| cle  | Castilla y León   |
+| clm  | Castilla - La Mancha   |
+| cat  | Cataluña   |
+| val  | Comunitat Valenciana   |
+| ext  | Extremadura   |
+| gal  | Galicia   |
+| mad  | Madrid, Comunidad de    |
+| mur  | Murcia, Región de   |
+| nav  | Navarra, Comunidad Foral de   |
+| pva  | País Vasco |
+| rio  | Rioja, La </div><div class="param">dia (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de día | Día |
+|----------|----------|
+| a | D+0 (00-12)  |
+| b  | D+0 (00-12)   |
+|  c | D+1 (00-12)  |
+| d  | D+1 (12-24) |
+| e  | D+2 (00-12) |
+| f  | D+2 (12-24) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="ObservacionConvencional">ObservacionConvencional</a></h1>
+  <div class="method"><a name="datos de observación. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/observacion/convencional/todas</code></pre></div>
+    <div class="method-summary">Datos de observación. Tiempo actual. (<span class="nickname">datos de observación. Tiempo actual.</span>)</div>
+    <div class="method-notes">Datos de observación horarios de las últimas 24 horas todas las estaciones meteorológicas de las que se han recibido datos en ese período. Frecuencia de actualización: continuamente.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="datos de observación. Tiempo actual.1"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/observacion/convencional/datos/estacion/{idema}</code></pre></div>
+    <div class="method-summary">Datos de observación. Tiempo actual. (<span class="nickname">datos de observación. Tiempo actual.1</span>)</div>
+    <div class="method-notes">Datos de observación horarios de las últimas 24 horas de la estación meterológica que se pasa como parámetro (idema). Frecuencia de actualización: continuamente.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idema (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Índicativo climatológico de la EMA </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="mensajes de observación. Último elaborado."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/observacion/convencional/mensajes/tipomensaje/{tipomensaje}</code></pre></div>
+    <div class="method-summary">Mensajes de observación. Último elaborado. (<span class="nickname">mensajes de observación. Último elaborado.</span>)</div>
+    <div class="method-notes">Últimos mensajes de observación. Para los SYNOP y TEMP devuelve los mensajes de las últimas 24 horas y para los CLIMAT de los 40 últimos dias. Se pasa como parámetro el tipo de mensaje que se desea (tipomensaje). El resultado de la petición es un fichero en formato tar.gz, que contiene los boletines en formato json y bufr.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">tipomensaje (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Tipo de Mensaje |
+|----------|----------|
+| climat  | CLIMAT   |
+| synop  | SYNOP   |
+| temp  | TEMP </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="PrediccionMaritima">PrediccionMaritima</a></h1>
+  <div class="method"><a name="predicción marítima costera."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/maritima/costera/costa/{costa}</code></pre></div>
+    <div class="method-summary">Predicción marítima costera. (<span class="nickname">predicción marítima costera.</span>)</div>
+    <div class="method-notes">Predicción para un periodo de 24 horas de las condiciones meteorológicas para la zona costera pasada por parámetro.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">costa (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Área Costera |
+|----------|----------|
+| 42 | Costa de Andalucía Occidental y Ceuta   |
+| 47  | Costa de Andalucía Oriental y Melilla   |
+| 41  | Costa de Asturias, Cantabria y País Vasco  |
+| 45  | Costa de Cataluña   |
+| 40  | Costa de Galicia   |
+| 44  | Costa de Illes Balears   |
+| 43  | Costa de las Islas Canarias  |
+| 46  | Costa de Valencia y Murcia </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción marítima de alta mar."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/maritima/altamar/area/{area}</code></pre></div>
+    <div class="method-summary">Predicción marítima de alta mar. (<span class="nickname">predicción marítima de alta mar.</span>)</div>
+    <div class="method-notes">Predicción para un periodo de 24 horas de las condiciones meteorológicas para el área marítima pasada por parámetro.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">area (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Área de Alta Mar |
+|----------|----------|
+| 0 | Océano Atlántico al sur de 35º N   |
+| 1  | Océano Atlántico al norte de 30º N   |
+| 2  | Mar Mediterráneo </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="PrediccionesEspecificas">PrediccionesEspecificas</a></h1>
+  <div class="method"><a name="informacion nivologica."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/especifica/nivologica/{area}</code></pre></div>
+    <div class="method-summary">Información nivológica. (<span class="nickname">informacion nivologica.</span>)</div>
+    <div class="method-notes">Información nivológica para la zona montañosa que se pasa como parámetro (area).</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">area (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de  Área Montañosa |  Área Montañosa |
+|----------|----------|
+| 0 | Pirineo Catalán  |
+| 1  | Pirineo Navarro y Aragonés </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción de montaña. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/especifica/montaña/pasada/area/{area}/dia/{dia}</code></pre></div>
+    <div class="method-summary">Predicción de montaña. Tiempo actual. (<span class="nickname">predicción de montaña. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción meteorológica para la zona montañosa que se pasa como parámetro (area) con validez para el día (día).  Periodicidad de actualización: continuamente.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">area (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de Área Montañosa | Área Montañosa |
+|----------|----------|
+| peu1 | Picos de Europa   |
+| nav1  | Pirineo Navarro   |
+| arn1  | Pirineo Aragonés  |
+| cat1  | Pirineo Catalán   |
+| rio1  | Ibérica Riojana   |
+| arn2  | Ibérica Aragonesa   |
+| mad2  | Sierras de Guadarrama y Somosierra  |
+| gre1  | Sierra de Gredos   |
+| nev1  | Sierra Nevada </div><div class="param">dia (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de día | Día |
+|----------|----------|
+| 0 | día actual  |
+| 1  | d+1 (mañana)   |
+| 2  | d+2 (pasado mañana)  |
+| 3  | d+3 (siguente a pasado mañana) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción de montaña. Tiempo pasado."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/especifica/montaña/pasada/area/{area}</code></pre></div>
+    <div class="method-summary">Predicción de montaña. Tiempo pasado. (<span class="nickname">predicción de montaña. Tiempo pasado.</span>)</div>
+    <div class="method-notes">Breve resumen con lo más significativo de las condiciones meteorológicas registradas en la zona de montaña que se pasa como parámetro (area) en las últimas 24-36 horas.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">area (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de Área Montañosa | Área Montañosa |
+|----------|----------|
+| peu1 | Picos de Europa   |
+| nav1  | Pirineo Navarro   |
+| arn1  | Pirineo Aragonés  |
+| cat1  | Pirineo Catalán   |
+| rio1  | Ibérica Riojana   |
+| arn2  | Ibérica Aragonesa   |
+| mad2  | Sierras de Guadarrama y Somosierra  |
+| gre1  | Sierra de Gredos   |
+| nev1  | Sierra Nevada </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción de radiación ultravioleta (UVI)."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/especifica/uvi/{dia}</code></pre></div>
+    <div class="method-summary">Predicción de radiación ultravioleta (UVI). (<span class="nickname">predicción de radiación ultravioleta (UVI).</span>)</div>
+    <div class="method-notes">Predicción de Índice de radiación UV máximo en condiciones de cielo despejado para el día seleccionado.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">dia (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de día | Día |
+|----------|----------|
+| 0 | día actual  |
+| 1  | d+1 (mañana)   |
+| 2  | d+2 (pasado mañana)  |
+| 3  | d+3 (dentro de 3 días) |
+| 4  | d+4 (dentro de 4 días) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción para las playas. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/especifica/playa/{playa}</code></pre></div>
+    <div class="method-summary">Predicción para las playas. Tiempo actual. (<span class="nickname">predicción para las playas. Tiempo actual.</span>)</div>
+    <div class="method-notes">La predicción diaria de la playa que se pasa como parámetro. Establece el estado de nubosidad para unas horas determinadas, las 11 y las 17 hora oficial. Se analiza también si se espera precipitación en el entorno de esas horas, entre las 08 y las 14 horas y entre las 14 y 20 horas.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">playa (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Código de playa
+http://www.aemet.es/documentos/es/eltiempo/prediccion/playas/Playas_codigos.csv </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción por municipios diaria. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/especifica/municipio/diaria/{municipio}</code></pre></div>
+    <div class="method-summary">Predicción por municipios diaria. Tiempo actual. (<span class="nickname">predicción por municipios diaria. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción para el municipio que se pasa como parámetro (municipio). Periodicidad de actualización: continuamente.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">municipio (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Código de municipio
+http://www.ine.es/daco/daco42/codmun/codmunmapa.htm </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción por municipios horaria. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/especifica/municipio/horaria/{municipio}</code></pre></div>
+    <div class="method-summary">Predicción por municipios horaria. Tiempo actual. (<span class="nickname">predicción por municipios horaria. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción horaria para el municipio que se pasa como parámetro (municipio). Presenta la información de hora en hora hasta 48 horas.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">municipio (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Código de municipio
+http://www.ine.es/daco/daco42/codmun/codmunmapa.htm </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="PrediccionesNormalizadasTexto">PrediccionesNormalizadasTexto</a></h1>
+  <div class="method"><a name="predicción CCAA hoy. Archivo."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/ccaa/hoy/{ccaa}/elaboracion/{fecha}</code></pre></div>
+    <div class="method-summary">Predicción CCAA hoy. Archivo. (<span class="nickname">predicción CCAA hoy. Archivo.</span>)</div>
+    <div class="method-notes">Predicción para la comunidad autónoma que se pasa como parámetro (ccaa) con validez para el día de fecha de elaboración que se pasa como parámetro (fecha). Periodicidad de actualización: continuamente.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">ccaa (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de CCAA | CCAA |
+|----------|----------|
+| and  | Andalucía   |
+| arn  | Aragón   |
+| ast  | Astrrias  |
+| bal  | Ballears, Illes   |
+| coo  | Canarias   |
+| can  | Cantabria   |
+| cle  | Castilla y León   |
+| clm  | Castilla - La Mancha   |
+| cat  | Cataluña   |
+| val  | Comunitat Valenciana   |
+| ext  | Extremadura   |
+| gal  | Galicia   |
+| mad  | Madrid, Comunidad de    |
+| mur  | Murcia, Región de   |
+| nav  | Navarra, Comunidad Foral de   |
+| pva  | País Vasco |
+| rio  | Rioja, La </div><div class="param">fecha (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Día de elaboración (AAAA-MM-DD) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción CCAA hoy. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/ccaa/hoy/{ccaa}</code></pre></div>
+    <div class="method-summary">Predicción CCAA hoy. Tiempo actual. (<span class="nickname">predicción CCAA hoy. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción para la CCAA que se pasa como parámetro con validez para mismo día que la fecha de petición. En el caso de que en la fecha de petición este producto todavía no se hubiera elaborado, se retornará el último elaborado. Actualización continuamente.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">ccaa (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de CCAA | CCAA |
+|----------|----------|
+| and  | Andalucía   |
+| arn  | Aragón   |
+| ast  | Asturias  |
+| bal  | Ballears, Illes   |
+| coo  | Canarias   |
+| can  | Cantabria   |
+| cle  | Castilla y León   |
+| clm  | Castilla - La Mancha   |
+| cat  | Cataluña   |
+| val  | Comunitat Valenciana   |
+| ext  | Extremadura   |
+| gal  | Galicia   |
+| mad  | Madrid, Comunidad de    |
+| mur  | Murcia, Región de   |
+| nav  | Navarra, Comunidad Foral de   |
+| pva  | País Vasco |
+| rio  | Rioja, La </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción CCAA mañana. Archivo."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/ccaa/manana/{ccaa}/elaboracion/{fecha}</code></pre></div>
+    <div class="method-summary">Predicción CCAA mañana. Archivo. (<span class="nickname">predicción CCAA mañana. Archivo.</span>)</div>
+    <div class="method-notes">Predicción para la comunidad autónoma que se pasa como parámetro (ccaa) con validez para el día siguiente a la fecha de elaboración que se pasa como parámetro (fecha). Periodicidad de actualización. continuamente.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">ccaa (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de CCAA | CCAA |
+|----------|----------|
+| and  | Andalucía   |
+| arn  | Aragón   |
+| ast  | Astrrias  |
+| bal  | Ballears, Illes   |
+| coo  | Canarias   |
+| can  | Cantabria   |
+| cle  | Castilla y León   |
+| clm  | Castilla - La Mancha   |
+| cat  | Cataluña   |
+| val  | Comunitat Valenciana   |
+| ext  | Extremadura   |
+| gal  | Galicia   |
+| mad  | Madrid, Comunidad de    |
+| mur  | Murcia, Región de   |
+| nav  | Navarra, Comunidad Foral de   |
+| pva  | País Vasco |
+| rio  | Rioja, La </div><div class="param">fecha (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Día de elaboración (AAAA-MM-DD) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción CCAA mañana. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/ccaa/manana/{ccaa}</code></pre></div>
+    <div class="method-summary">Predicción CCAA mañana. Tiempo actual. (<span class="nickname">predicción CCAA mañana. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción para la comunidad autónoma que se pasa como parámetro para el día siguiente a la fecha de la petición. En el caso de el producto no se hubiera elaborado todavía en la fecha de petición se retornará el último producto elaborado. Periodicidad de actualización: continuamente.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">ccaa (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de CCAA | CCAA |
+|----------|----------|
+| and  | Andalucía   |
+| arn  | Aragón   |
+| ast  | Astrrias  |
+| bal  | Ballears, Illes   |
+| coo  | Canarias   |
+| can  | Cantabria   |
+| cle  | Castilla y León   |
+| clm  | Castilla - La Mancha   |
+| cat  | Cataluña   |
+| val  | Comunitat Valenciana   |
+| ext  | Extremadura   |
+| gal  | Galicia   |
+| mad  | Madrid, Comunidad de    |
+| mur  | Murcia, Región de   |
+| nav  | Navarra, Comunidad Foral de   |
+| pva  | País Vasco |
+| rio  | Rioja, La </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción CCAA medio plazo. Archivo."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/ccaa/medioplazo/{ccaa}/elaboracion/{fecha}</code></pre></div>
+    <div class="method-summary">Predicción CCAA medio plazo. Archivo. (<span class="nickname">predicción CCAA medio plazo. Archivo.</span>)</div>
+    <div class="method-notes">Predicción de mediio plazo para la comunidad autónoma que se pasa como parámetro (ccaa) a partir de la fecha de elaboración que se pasa como parámetro (fecha). Periodicidad de actualización: continuamente.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">ccaa (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de CCAA | CCAA |
+|----------|----------|
+| and  | Andalucía   |
+| arn  | Aragón   |
+| ast  | Astrrias  |
+| bal  | Ballears, Illes   |
+| coo  | Canarias   |
+| can  | Cantabria   |
+| cle  | Castilla y León   |
+| clm  | Castilla - La Mancha   |
+| cat  | Cataluña   |
+| val  | Comunitat Valenciana   |
+| ext  | Extremadura   |
+| gal  | Galicia   |
+| mad  | Madrid, Comunidad de    |
+| mur  | Murcia, Región de   |
+| nav  | Navarra, Comunidad Foral de   |
+| pva  | País Vasco |
+| rio  | Rioja, La </div><div class="param">fecha (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Día de elaboración (AAAA-MM-DD) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción CCAA medio plazo. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/ccaa/medioplazo/{ccaa}</code></pre></div>
+    <div class="method-summary">Predicción CCAA medio plazo. Tiempo actual. (<span class="nickname">predicción CCAA medio plazo. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción para la comunidad autónoma que se pasa como parámetro (ccaa) y con validez para el medio plazo a partir de la fecha de petición. En el caso de que en el fecha de la petición no se hubiera generado aún el producto, se retornará el última elaborado. Periodicidad de actualización: continuamente.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">ccaa (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de CCAA | CCAA |
+|----------|----------|
+| and  | Andalucía   |
+| arn  | Aragón   |
+| ast  | Astrrias  |
+| bal  | Ballears, Illes   |
+| coo  | Canarias   |
+| can  | Cantabria   |
+| cle  | Castilla y León   |
+| clm  | Castilla - La Mancha   |
+| cat  | Cataluña   |
+| val  | Comunitat Valenciana   |
+| ext  | Extremadura   |
+| gal  | Galicia   |
+| mad  | Madrid, Comunidad de    |
+| mur  | Murcia, Región de   |
+| nav  | Navarra, Comunidad Foral de   |
+| pva  | País Vasco |
+| rio  | Rioja, La </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción CCAA pasado mañana. Archivo."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/ccaa/pasadomanana/{ccaa}/elaboracion/{fecha}</code></pre></div>
+    <div class="method-summary">Predicción CCAA pasado mañana. Archivo. (<span class="nickname">predicción CCAA pasado mañana. Archivo.</span>)</div>
+    <div class="method-notes">Predicción para la comunidad autónoma que se pasa como parámetro (ccaa) y validez para pasado mañana a partir de la fecha de elaboración que se pasa como parámetro (fecha). Periodicidad de actualización: continuamente.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">ccaa (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de CCAA | CCAA |
+|----------|----------|
+| and  | Andalucía   |
+| arn  | Aragón   |
+| ast  | Astrrias  |
+| bal  | Ballears, Illes   |
+| coo  | Canarias   |
+| can  | Cantabria   |
+| cle  | Castilla y León   |
+| clm  | Castilla - La Mancha   |
+| cat  | Cataluña   |
+| val  | Comunitat Valenciana   |
+| ext  | Extremadura   |
+| gal  | Galicia   |
+| mad  | Madrid, Comunidad de    |
+| mur  | Murcia, Región de   |
+| nav  | Navarra, Comunidad Foral de   |
+| pva  | País Vasco |
+| rio  | Rioja, La </div><div class="param">fecha (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Día de elaboración (AAAA-MM-DD) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción CCAA pasado mañana. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/ccaa/pasadomanana/{ccaa}</code></pre></div>
+    <div class="method-summary">Predicción CCAA pasado mañana. Tiempo actual. (<span class="nickname">predicción CCAA pasado mañana. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción para la comunidad autónoma que se pasa como parámetro (ccaa) y validez para el medio plazo a partir de la fecha de la petición. En el caso de que en la fecha de la petición dicho producto aún no se hubiera generado retornará el último de este tipo que se hubiera generado.  Periodicidad de actualización: continuamente.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">ccaa (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código de CCAA | CCAA |
+|----------|----------|
+| and  | Andalucía   |
+| arn  | Aragón   |
+| ast  | Astrrias  |
+| bal  | Ballears, Illes   |
+| coo  | Canarias   |
+| can  | Cantabria   |
+| cle  | Castilla y León   |
+| clm  | Castilla - La Mancha   |
+| cat  | Cataluña   |
+| val  | Comunitat Valenciana   |
+| ext  | Extremadura   |
+| gal  | Galicia   |
+| mad  | Madrid, Comunidad de    |
+| mur  | Murcia, Región de   |
+| nav  | Navarra, Comunidad Foral de   |
+| pva  | País Vasco |
+| rio  | Rioja, La </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción nacional hoy. Archivo."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/nacional/hoy/elaboracion/{fecha}</code></pre></div>
+    <div class="method-summary">Predicción nacional hoy. Archivo. (<span class="nickname">predicción nacional hoy. Archivo.</span>)</div>
+    <div class="method-notes">Predicción nacional para el día correspondiente a la fecha que se pasa como parámetro en en formato texto. Actualización diaria. Hay días en los que este producto no se realiza. En ese caso se devuelve un 404 producto no existente.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">fecha (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Fecha en formato (AAAA-MM-DD) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción nacional hoy. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/nacional/hoy</code></pre></div>
+    <div class="method-summary">Predicción nacional hoy. Última elaborada. (<span class="nickname">predicción nacional hoy. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción nacional para el día actual a la fecha de elaboración en formato texto. Actualización diaria. Hay días en los que este producto no se realiza. En ese caso se devuelve la predicción nacional última que se elaboró.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción nacional mañana. Archivo."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/nacional/manana/elaboracion/{fecha}</code></pre></div>
+    <div class="method-summary">Predicción nacional mañana. Archivo. (<span class="nickname">predicción nacional mañana. Archivo.</span>)</div>
+    <div class="method-notes">Predicción nacional para el día siguiente a la fecha de elaboración. En este caso la fecha de elaboración es la fecha que se pasa como parámetro. Actualización diaria.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">fecha (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Día (AAAA-MM-DD) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción nacional mañana. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/nacional/manana</code></pre></div>
+    <div class="method-summary">Predicción nacional mañana. Tiempo actual. (<span class="nickname">predicción nacional mañana. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción nacional para el día siguiente a la fecha de elaboración. En este caso la fecha de elaboración es el día actual. Actualización diaria. En el caso de que en el día actual  todavía no se haya elaborado se devolverá el último producto de predicción nacional para mañana elaborado.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción nacional medio plazo. Archivo."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/nacional/medioplazo/elaboracion/{fecha}</code></pre></div>
+    <div class="method-summary">Predicción nacional medio plazo. Archivo. (<span class="nickname">predicción nacional medio plazo. Archivo.</span>)</div>
+    <div class="method-notes">Predicción nacional para el medio plazo siguiente a la fecha de elaboración. En este caso, la fecha de elaboración es la fecha que se pasa como parámetro. Actualización diaria.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">fecha (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Día (AAAA-MM-DD) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción nacional medio plazo. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/nacional/medioplazo</code></pre></div>
+    <div class="method-summary">Predicción nacional medio plazo. Tiempo actual. (<span class="nickname">predicción nacional medio plazo. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción nacional para medio plazo siguiente a la fecha de elaboración. En este caso la fecha de elaboración es el día actual. Actualización diaria. En el caso de que en el día actual  todavía no se haya elaborado se devolverá el último producto de predicción nacional para medio plazo elaborado.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción nacional pasado mañana. Archivo."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/nacional/pasadomanana/elaboracion/{fecha}</code></pre></div>
+    <div class="method-summary">Predicción nacional pasado mañana. Archivo. (<span class="nickname">predicción nacional pasado mañana. Archivo.</span>)</div>
+    <div class="method-notes">Predicción nacional para pasado mañana siguiente a la fecha de elaboración. En este caso, la fecha de elaboración es la fecha que se pasa como parámetro. Actualización diaria.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">fecha (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Día (AAAA-MM-DD) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción nacional pasado mañana. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/nacional/pasadomanana</code></pre></div>
+    <div class="method-summary">Predicción nacional pasado mañana. Tiempo actual. (<span class="nickname">predicción nacional pasado mañana. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción nacional para pasado mañana siguiente a la fecha de elaboración. En este caso la fecha de elaboración es el día actual. Actualización diaria. En el caso de que en el día actual  todavía no se haya elaborado se devolverá el último producto de predicción nacional para pasado mañana elaborado.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción nacional tendencia. Archivo."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/nacional/tendencia/elaboracion/{fecha}</code></pre></div>
+    <div class="method-summary">Predicción nacional tendencia. Archivo. (<span class="nickname">predicción nacional tendencia. Archivo.</span>)</div>
+    <div class="method-notes">Predicción nacional para tendencia siguiente a la fecha de elaboración. En este caso, la fecha de elaboración es la fecha que se pasa como parámetro. Actualización diaria.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">fecha (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Día (AAAA-MM-DD) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción nacional tendencia. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/nacional/tendencia</code></pre></div>
+    <div class="method-summary">Predicción nacional tendencia. Tiempo actual. (<span class="nickname">predicción nacional tendencia. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción nacional para tendencia siguiente a la fecha de elaboración. En este caso la fecha de elaboración es el día actual. Actualización diaria. En el caso de que en el día actual  todavía no se haya elaborado se devolverá el último producto de predicción nacional para tendencia elaborado.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción provincia hoy. Archivo."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/provincia/hoy/{provincia}/elaboracion/{fecha}</code></pre></div>
+    <div class="method-summary">Predicción provincia hoy. Archivo. (<span class="nickname">predicción provincia hoy. Archivo.</span>)</div>
+    <div class="method-notes">Predicción del día siguiente a la fecha que se pasa como parámetro para la provincia que se pasa como parámetro. Actualización continua y fija a las 14:00 Hora Oficial Peninsular del día que se pasa como parámetro.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">provincia (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código Provincia | Provincia |
+|----------|----------|
+| 01  | Araba/Álaba   |
+| 01  | Araba/Álava   |
+| 02  | Albacete   |
+| 03  | Alacant/Alicante  |
+| 04  | Almería   |
+| 33  | Asturias   |
+| 05  | Ávila   |
+| 06  | Badajoz   |
+| 07  | Illes Ballears   |
+| 08  | Barcelona   |
+| 48  | Bizkaia   |
+| 09  | Burgos   |
+| 10  | Cáceres   |
+| 11  | Cádiz   |
+| 39  | Cantabria   |
+| 12  | Castelló/Castellón   |
+| 51  | Ceuta   |
+| 13  | Ciudad Real   |
+| 14  | Córdoba   |
+| 15  | A Coruña   |
+| 16  | Cuenca   |
+| 17  | Girona   |
+| 18  | Granada   |
+| 19  | Guadalajara   |
+| 20  | Gipuzkoa   |
+| 21  | Huelva   |
+| 22  | Huesca   |
+| 23  | Jaén   |
+| 24  | León   |
+| 25  | Lleida   |
+| 27  | Lugo   |
+| 28  | Madrid   |
+| 29  | Málaga   |
+| 52  | Melilla   |
+| 30  | Murcia   |
+| 31  | Navarra   |
+| 32  | Oursense   |
+| 34  | Palencia   |
+| 35  | Las Palmas   |
+| 36  | Pontevedra   |
+| 26  | La Rioja   |
+| 37  | Salamanca   |
+| 38  | Santa Cruz de Tenerife   |
+| 40  | Segovia   |
+| 41  | Sevilla   |
+| 42  | Soria   |
+| 43  | Tarragona   |
+| 44  | Teruel   |
+| 45  | Toledo   |
+| 46  | València/Valencia   |
+| 47  | Valladolid   |
+| 49  | Zamora   |
+| 50  | Zaragoza   |
+| </div><div class="param">fecha (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Día de elaboración (AAAA-MM-DD) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción provincia hoy. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/provincia/hoy/{provincia}</code></pre></div>
+    <div class="method-summary">Predicción provincia hoy. Tiempo actual. (<span class="nickname">predicción provincia hoy. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción del día actual para la provincia que se pasa como parámetro. En el caso de que este producto no se haya elaborado todavía en el día actual, se retorna el último elaborado. Actualización continua y fija a las 14:00 Hora Oficial Peninsular.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">provincia (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código Provincia | Provincia |
+|----------|----------|
+| 01  | Araba/Álaba   |
+| 01  | Araba/Álava   |
+| 02  | Albacete   |
+| 03  | Alacant/Alicante  |
+| 04  | Almería   |
+| 33  | Asturias   |
+| 05  | Ávila   |
+| 06  | Badajoz   |
+| 07  | Illes Ballears   |
+| 08  | Barcelona   |
+| 48  | Bizkaia   |
+| 09  | Burgos   |
+| 10  | Cáceres   |
+| 11  | Cádiz   |
+| 39  | Cantabria   |
+| 12  | Castelló/Castellón   |
+| 51  | Ceuta   |
+| 13  | Ciudad Real   |
+| 14  | Córdoba   |
+| 15  | A Coruña   |
+| 16  | Cuenca   |
+| 17  | Girona   |
+| 18  | Granada   |
+| 19  | Guadalajara   |
+| 20  | Gipuzkoa   |
+| 21  | Huelva   |
+| 22  | Huesca   |
+| 23  | Jaén   |
+| 24  | León   |
+| 25  | Lleida   |
+| 27  | Lugo   |
+| 28  | Madrid   |
+| 29  | Málaga   |
+| 52  | Melilla   |
+| 30  | Murcia   |
+| 31  | Navarra   |
+| 32  | Oursense   |
+| 34  | Palencia   |
+| 35  | Las Palmas   |
+| 36  | Pontevedra   |
+| 26  | La Rioja   |
+| 37  | Salamanca   |
+| 38  | Santa Cruz de Tenerife   |
+| 40  | Segovia   |
+| 41  | Sevilla   |
+| 42  | Soria   |
+| 43  | Tarragona   |
+| 44  | Teruel   |
+| 45  | Toledo   |
+| 46  | València/Valencia   |
+| 47  | Valladolid   |
+| 49  | Zamora   |
+| 50  | Zaragoza   |
+| </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción provincia mañana. Archivo."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/provincia/manana/{provincia}/elaboracion/{fecha}</code></pre></div>
+    <div class="method-summary">Predicción provincia mañana. Archivo. (<span class="nickname">predicción provincia mañana. Archivo.</span>)</div>
+    <div class="method-notes">Predicción del día siguiente a la fecha que se pasa como parámetro para la provincia que se pasa como parámetro. Actualización continua y fija a las 14:00 Hora Oficial Peninsular del día que se pasa como parámetro.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">provincia (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código Provincia | Provincia |
+|----------|----------|
+| 01  | Araba/Álaba   |
+| 01  | Araba/Álava   |
+| 02  | Albacete   |
+| 03  | Alacant/Alicante  |
+| 04  | Almería   |
+| 33  | Asturias   |
+| 05  | Ávila   |
+| 06  | Badajoz   |
+| 07  | Illes Ballears   |
+| 08  | Barcelona   |
+| 48  | Bizkaia   |
+| 09  | Burgos   |
+| 10  | Cáceres   |
+| 11  | Cádiz   |
+| 39  | Cantabria   |
+| 12  | Castelló/Castellón   |
+| 51  | Ceuta   |
+| 13  | Ciudad Real   |
+| 14  | Córdoba   |
+| 15  | A Coruña   |
+| 16  | Cuenca   |
+| 17  | Girona   |
+| 18  | Granada   |
+| 19  | Guadalajara   |
+| 20  | Gipuzkoa   |
+| 21  | Huelva   |
+| 22  | Huesca   |
+| 23  | Jaén   |
+| 24  | León   |
+| 25  | Lleida   |
+| 27  | Lugo   |
+| 28  | Madrid   |
+| 29  | Málaga   |
+| 52  | Melilla   |
+| 30  | Murcia   |
+| 31  | Navarra   |
+| 32  | Oursense   |
+| 34  | Palencia   |
+| 35  | Las Palmas   |
+| 36  | Pontevedra   |
+| 26  | La Rioja   |
+| 37  | Salamanca   |
+| 38  | Santa Cruz de Tenerife   |
+| 40  | Segovia   |
+| 41  | Sevilla   |
+| 42  | Soria   |
+| 43  | Tarragona   |
+| 44  | Teruel   |
+| 45  | Toledo   |
+| 46  | València/Valencia   |
+| 47  | Valladolid   |
+| 49  | Zamora   |
+| 50  | Zaragoza   |
+| </div><div class="param">fecha (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Día de elaboración (AAAA-MM-DD) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="predicción provincia mañana. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/prediccion/provincia/manana/{provincia}</code></pre></div>
+    <div class="method-summary">Predicción provincia mañana. Tiempo actual. (<span class="nickname">predicción provincia mañana. Tiempo actual.</span>)</div>
+    <div class="method-notes">Predicción del día siguiente para la provincia que se pasa como parámetro. En el caso de que este producto no se haya elaborado todavía en el día actual, se retorna el último elaborado. Actualización continua y fija a las 14:00 Hora Oficial Peninsular.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">provincia (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código Provincia | Provincia |
+|----------|----------|
+| 01  | Araba/Álaba   |
+| 01  | Araba/Álava   |
+| 02  | Albacete   |
+| 03  | Alacant/Alicante  |
+| 04  | Almería   |
+| 33  | Asturias   |
+| 05  | Ávila   |
+| 06  | Badajoz   |
+| 07  | Illes Ballears   |
+| 08  | Barcelona   |
+| 48  | Bizkaia   |
+| 09  | Burgos   |
+| 10  | Cáceres   |
+| 11  | Cádiz   |
+| 39  | Cantabria   |
+| 12  | Castelló/Castellón   |
+| 51  | Ceuta   |
+| 13  | Ciudad Real   |
+| 14  | Córdoba   |
+| 15  | A Coruña   |
+| 16  | Cuenca   |
+| 17  | Girona   |
+| 18  | Granada   |
+| 19  | Guadalajara   |
+| 20  | Gipuzkoa   |
+| 21  | Huelva   |
+| 22  | Huesca   |
+| 23  | Jaén   |
+| 24  | León   |
+| 25  | Lleida   |
+| 27  | Lugo   |
+| 28  | Madrid   |
+| 29  | Málaga   |
+| 52  | Melilla   |
+| 30  | Murcia   |
+| 31  | Navarra   |
+| 32  | Oursense   |
+| 34  | Palencia   |
+| 35  | Las Palmas   |
+| 36  | Pontevedra   |
+| 26  | La Rioja   |
+| 37  | Salamanca   |
+| 38  | Santa Cruz de Tenerife   |
+| 40  | Segovia   |
+| 41  | Sevilla   |
+| 42  | Soria   |
+| 43  | Tarragona   |
+| 44  | Teruel   |
+| 45  | Toledo   |
+| 46  | València/Valencia   |
+| 47  | Valladolid   |
+| 49  | Zamora   |
+| 50  | Zaragoza   |
+| </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="ProductosClimatologicos">ProductosClimatologicos</a></h1>
+  <div class="method"><a name="balance hídrico nacional (documento)."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/productos/climatologicos/balancehidrico/{anio}/{decena}</code></pre></div>
+    <div class="method-summary">Balance hídrico nacional (documento). (<span class="nickname">balance hídrico nacional (documento).</span>)</div>
+    <div class="method-notes">Se obtiene, para la decema y el año pasados por parámetro, el Boletín Hídrico Nacional que se elabora cada diez días. Se presenta información resumida de forma distribuida para todo el territorio nacional de diferentes variables, en las que se incluye informaciones de la precipitación y la evapotranspiración potencial acumuladas desde el 1 de septiembre.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">anio (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Año (AAAA) </div><div class="param">decena (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Decena de 01 (primera decena) a 36 (última decena) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="capas SHAPE de estaciones climatológicas."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/productos/climatologicos/capasshape/{tipoestacion}</code></pre></div>
+    <div class="method-summary">Capas SHAPE de estaciones climatológicas de AEMET. (<span class="nickname">capas SHAPE de estaciones climatológicas.</span>)</div>
+    <div class="method-notes">Capas SHAPE de las distintas estaciones climatológicas de AEMET: automáticas, completas, pluviométricas y termométricas.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">tipoestacion (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Tipo de Estación |
+|----------|----------|
+| automaticas  | Estaciones Automáticas   |
+| completas  | Estaciones Completas   |
+| pluviometricas  | Estaciones Pluviométricas   |
+| termometricas  | Estaciones Termométricas </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="resumen mensual climatológico nacional (documento)."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/productos/climatologicos/resumenclimatologico/nacional/{anio}/{mes}</code></pre></div>
+    <div class="method-summary">Resumen mensual climatológico nacional (documento). (<span class="nickname">resumen mensual climatológico nacional (documento).</span>)</div>
+    <div class="method-notes">Resumen climatológico nacional, para el año y mes pasado por parámetro, sobre el estado del clima y la evolución de las principales variables climáticas, en especial temperatura y precipitación, a nivel mensual, estacional y anual.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">anio (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Año (AAAA) </div><div class="param">mes (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Mes (mm) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="RedRadares">RedRadares</a></h1>
+  <div class="method"><a name="imagen composición nacional radares. Tiempo actual estándar."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/red/radar/nacional</code></pre></div>
+    <div class="method-summary">Imagen composición nacional radares. Tiempo actual estándar. (<span class="nickname">imagen composición nacional radares. Tiempo actual estándar.</span>)</div>
+    <div class="method-notes">Imagen composición nacional radares. Tiempo actual estándar. Periodicidad: 30 minutos.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="radar Regional"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/red/radar/regional/{radar}</code></pre></div>
+    <div class="method-summary">Imagen gráfica radar regional. Tiempo actual estándar. (<span class="nickname">radar Regional</span>)</div>
+    <div class="method-notes">Imagen del radar regional de la región pasada por parámetro. Tiempo actual estándar. Periodicidad: 10 minutos.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">radar (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Radar |
+|----------|----------|
+| am  | Almería   |
+| sa  | Asturias   |
+| pm  | Illes Balears   |
+| ba  | Barcelona  |
+| cc  | Cáceres   |
+| co  | A Coruña   |
+| ma  | Madrid   |
+| ml  | Málaga   |
+| mu  | Murcia   |
+| vd  | Palencia   |
+| ca  | Las Palmas   |
+| se  | Sevilla   |
+| va  | Valencia   |
+| ss  | Vizcaya   |
+| za  | Zaragoza </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="RedRayos">RedRayos</a></h1>
+  <div class="method"><a name="mapa con los rayos registrados en periodo standard. Último elaborado."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/red/rayos/mapa</code></pre></div>
+    <div class="method-summary">Mapa con los rayos registrados en periodo standard. Último elaborado. (<span class="nickname">mapa con los rayos registrados en periodo standard. Último elaborado.</span>)</div>
+    <div class="method-notes">Imagen de las descargas caídas en el territorio nacional durante un período de 12 horas.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="RedesEspeciales">RedesEspeciales</a></h1>
+  <div class="method"><a name="contenido total de ozono. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/red/especial/ozono</code></pre></div>
+    <div class="method-summary">Contenido total de ozono. Tiempo actual. (<span class="nickname">contenido total de ozono. Tiempo actual.</span>)</div>
+    <div class="method-notes">Dato medio diario de contenido total de ozono. Cada 24 h (actualmente, en fines de semana, festivos y vacaciones no se genera por la falta de personal en el Centro Radiométrico Nacional).</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="datos de contaminación de fondo. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/red/especial/contaminacionfondo/estacion/{nombre_estacion}</code></pre></div>
+    <div class="method-summary">Datos de contaminación de fondo. Tiempo actual. (<span class="nickname">datos de contaminación de fondo. Tiempo actual.</span>)</div>
+    <div class="method-notes">Ficheros diarios con datos diezminutales de la estación de la red de contaminación de fondo EMEP/VAG/CAMP pasada por parámetro, de temperatura, presión, humedad, viento (dirección y velocidad), radiación global, precipitación y 4 componentes químicos: O3,SO2,NO,NO2 y PM10. Los datos se encuentran en formato FINN (propio del Ministerio de Medio Ambiente). Periodicidad: cada hora.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">nombre_estacion (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Estación de la Red EMEP |
+|----------|----------|
+| 11  | Barcarrota (Badajoz)   |
+| 10  | Cabo de Creus (Girona)   |
+| 09  | Campisábalos (Guadalajara)   |
+| 17  | Doñana (Huelva)  |
+| 14  | Els Torms (Lleida)   |
+| 06  | Mahón (Illes Balears)   |
+| 08  | Niembro-Llanes (Asturias)   |
+| 05  | Noia (A Coruña)   |
+| 16  | O Saviñao (Lugo)   |
+| 13  | Peñausende (Zamora)   |
+| 01  | San Pablo de los Montes (Toledo)   |
+| 07  | Víznar (Granada)   |
+| 12  | Zarra (Valencia) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="datos de radiación global, directa o difusa. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/red/especial/radiacion</code></pre></div>
+    <div class="method-summary">Datos de radiación global, directa o difusa. Tiempo actual. (<span class="nickname">datos de radiación global, directa o difusa. Tiempo actual.</span>)</div>
+    <div class="method-notes">Datos horarios (HORA SOLAR VERDADERA) acumulados de radiación  global, directa, difusa e infrarroja, y datos semihorarios  (HORA SOLAR VERDADERA) acumulados de radiación ultravioleta eritemática.Datos diarios acumulados  de radiación global, directa, difusa, ultravioleta eritemática e infrarroja. Periodicidad: Cada 24h (actualmente en fines de semana, festivos y vacaciones, no se genera por la ausencia de personal en el Centro Radiométrico Nacional).</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="perfiles verticales de ozono. Tiempo actual."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/red/especial/perfilozono/estacion/{estacion}</code></pre></div>
+    <div class="method-summary">Perfiles verticales de ozono. Tiempo actual. (<span class="nickname">perfiles verticales de ozono. Tiempo actual.</span>)</div>
+    <div class="method-notes">Perfil Vertical de Ozono de la estación pasada por parámetro. Periodicidad: cada 7 días.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">estacion (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Estación |
+|----------|----------|
+| canarias  | Izaña   |
+| peninsula  | Madrid </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="ValoresClimatologicos">ValoresClimatologicos</a></h1>
+  <div class="method"><a name="climatologías diarias."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/valores/climatologicos/diarios/datos/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}/estacion/{idema}</code></pre></div>
+    <div class="method-summary">Climatologías diarias. (<span class="nickname">climatologías diarias.</span>)</div>
+    <div class="method-notes">Valores climatológicos para el rango de fechas y la estación seleccionada. Periodicidad: 1 vez al día.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">fechaIniStr (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Fecha Inicial (AAAA-MM-DDTHH:MM:SSUTC) </div><div class="param">fechaFinStr (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Fecha Final (AAAA-MM-DDTHH:MM:SSUTC) </div><div class="param">idema (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Indicativo climatológico de la EMA. Puede introducir varios indicativos separados por comas (,) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="climatologías diarias.1"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/valores/climatologicos/diarios/datos/fechaini/{fechaIniStr}/fechafin/{fechaFinStr}/todasestaciones</code></pre></div>
+    <div class="method-summary">Climatologías diarias. (<span class="nickname">climatologías diarias.1</span>)</div>
+    <div class="method-notes">Valores climatológicos de todas las estaciones para el rango de fechas seleccionado. Periodicidad: 1 vez al día.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">fechaIniStr (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Fecha Inicial (AAAA-MM-DDTHH:MM:SSUTC) </div><div class="param">fechaFinStr (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Fecha Final (AAAA-MM-DDTHH:MM:SSUTC) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="climatologías mensuales anuales."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/valores/climatologicos/mensualesanuales/datos/anioini/{anioIniStr}/aniofin/{anioFinStr}/estacion/{idema}</code></pre></div>
+    <div class="method-summary">Climatologías mensuales anuales. (<span class="nickname">climatologías mensuales anuales.</span>)</div>
+    <div class="method-notes">Valores medios mensuales y anuales de los datos climatológicos para la estación y el periodo de años pasados por parámetro. Periodicidad: 1 vez al día.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">anioIniStr (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Año Inicial (AAAA) </div><div class="param">anioFinStr (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Año Final (AAAA) </div><div class="param">idema (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Indicativo climatológico de la EMA </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="climatologías normales (19812010)."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/valores/climatologicos/normales/estacion/{idema}</code></pre></div>
+    <div class="method-summary">Climatologías normales (1981-2010). (<span class="nickname">climatologías normales (19812010).</span>)</div>
+    <div class="method-notes">Valores climatológicos normales (periodo 1981-2010) para la estación pasada por parámetro. Periodicidad: 1 vez al día.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">idema (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Indicativo climatológico de la EMA </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="estaciones por indicativo."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/valores/climatologicos/inventarioestaciones/estaciones/{estaciones}</code></pre></div>
+    <div class="method-summary">Estaciones por indicativo. (<span class="nickname">estaciones por indicativo.</span>)</div>
+    <div class="method-notes">Características de la estación climatológica pasada por parámetro.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">estaciones (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Listado de indicativos climatológicos (id1,id2,id3,...,idn) </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="inventario de estaciones (valores climatológicos)."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/valores/climatologicos/inventarioestaciones/todasestaciones</code></pre></div>
+    <div class="method-summary">Inventario de estaciones (valores climatológicos). (<span class="nickname">inventario de estaciones (valores climatológicos).</span>)</div>
+    <div class="method-notes">Inventario con las características de todas las estaciones climatológicas. Periodicidad: 1 vez al día.</div>
+
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="valores extremos."/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /api/valores/climatologicos/valoresextremos/parametro/{parametro}/estacion/{idema}</code></pre></div>
+    <div class="method-summary">Valores extremos. (<span class="nickname">valores extremos.</span>)</div>
+    <div class="method-notes">Valores extremos para la estación y la variable (precipitación, temperatura y viento) pasadas por parámetro. Periodicidad: 1 vez al día.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">parametro (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; | Código | Parámetro Meteorológico |
+|----------|----------|
+| P  | Precipitación   |
+| T  | Temperatura   |
+| V  | Viento </div><div class="param">idema (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Indicativo climatológico de la EMA </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#200">200</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "descripcion" : "Éxito",
+  "estado" : 0,
+  "datos" : "datos",
+  "metadatos" : "metadatos"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    respuesta con éxito
+        <a href="#200">200</a>
+    <h4 class="field-label">401</h4>
+    petición no autorizada
+        <a href="#401">401</a>
+    <h4 class="field-label">404</h4>
+    petición sin datos
+        <a href="#404">404</a>
+    <h4 class="field-label">429</h4>
+    petición que sobrepasa los límites del servicio
+        <a href="#429">429</a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#200"><code>200</code> - </a></li>
+    <li><a href="#401"><code>401</code> - </a></li>
+    <li><a href="#404"><code>404</code> - </a></li>
+    <li><a href="#429"><code>429</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="200"><code>200</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">descripcion </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">estado </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">datos </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">metadatos </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="401"><code>401</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">descripcion </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">estado </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="404"><code>404</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">descripcion </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">estado </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="429"><code>429</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">descripcion </div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">estado </div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>

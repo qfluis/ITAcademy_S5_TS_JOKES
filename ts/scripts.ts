@@ -65,3 +65,23 @@ function displayVotes(visibility:string):void{
     document.getElementById("valoracion")!.style.visibility = visibility;
     (<HTMLElement>document.querySelector("#contenedor_chiste h3"))!.style.visibility = visibility;
 }
+
+
+
+
+// Weather
+
+myWeather(document.getElementById("myWeather"));
+function myWeather(myDiv: HTMLElement | null):void{
+    const API_URL: string = "https://api.openweathermap.org/data/2.5/weather?q=barcelona, ES&appid=c28c4174fb91d10f3633362559cdc9c8&units=metric";
+    myDiv!.innerHTML = "Loading weather...";
+        
+    fetch (API_URL)
+        .then((response) => response.json())
+        .then((w)=>{
+            console.log(w);
+            myDiv!.innerHTML = `${w.weather[0].description} - ${w.main.temp}ºC`;
+        });
+    
+
+}

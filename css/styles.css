@@ -11,12 +11,16 @@ main {
     background-image: url("/images/risitas.jpg");
     background-repeat:no-repeat;
     background-position:bottom right;
-    background-size:300px;
+    background-size:250px;
     
     max-width: 1200px;
     margin-right: auto;
     margin-left: auto;
     width:80%
+}
+
+#myWeather {
+    padding: 0.5rem 0rem 0rem 0.5rem;
 }
 
 #contenedor_chiste {
