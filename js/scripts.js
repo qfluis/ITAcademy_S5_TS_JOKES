@@ -20,22 +20,37 @@ function valorarChiste() {
 }
 // Peticion del chiste a API
 function cargarChiste() {
-    const API_URL = "https://icanhazdadjoke.com";
-    //const API_URL: string = "https://api.chucknorris.io/jokes/random";
+    let API_URL;
+    const API_dad = "https://icanhazdadjoke.com";
+    const API_chuck = "https://api.chucknorris.io/jokes/random";
     const HTMLResponse = document.getElementById("chiste");
     HTMLResponse.innerHTML = "Loading joke...";
-    const options = {
-        "method": "GET",
-        "headers": {
-            "Accept": "application/json"
-        }
-    };
-    fetch(API_URL, options)
-        .then((response) => response.json())
-        .then((joke) => {
-        HTMLResponse.innerHTML = joke.joke;
-        displayVotes("visible");
-    });
+    API_URL = (Math.random() > 0.5) ? API_dad : API_chuck;
+    if (API_URL == API_dad) {
+        const options = {
+            "method": "GET",
+            "headers": {
+                "Accept": "application/json"
+            }
+        };
+        fetch(API_URL, options)
+            .then((response) => response.json())
+            .then((joke) => {
+            document.querySelector("#header_emoji h1").innerHTML = "Random dad joke";
+            HTMLResponse.innerHTML = joke.joke;
+            displayVotes("visible");
+        });
+    }
+    else {
+        // CHUCK NO NECESITA OPTIONS :)
+        fetch(API_URL)
+            .then((response) => response.json())
+            .then((joke) => {
+            document.querySelector("#header_emoji h1").innerHTML = "Chuck Norris Facts";
+            HTMLResponse.innerHTML = joke.value;
+            displayVotes("visible");
+        });
+    }
 }
 /*
 function switchDisplayVotes(){
