@@ -64,19 +64,11 @@ function changeBackground() {
     backgroundNum = aleatorio;
     imagen.style.backgroundImage = `url('/images/backgrounds/${aleatorio}.png')`;
 }
-/*
-function switchDisplayVotes(){
-    const visible = document.getElementById("valoracion")!.style.visibility;
-    let visibility:string = (visible == "visible")?"hidden":"visible";
-        
-    document.getElementById("valoracion")!.style.visibility = visibility;
-    (<HTMLElement>document.querySelector("#contenedor_chiste h3"))!.style.visibility = visibility;
-}*/
 function displayVotes(visibility) {
     document.getElementById("valoracion").style.visibility = visibility;
     document.querySelector("#contenedor_chiste h3").style.visibility = visibility;
 }
-// Weather
+// WEATHER
 myWeather(document.getElementById("myWeather"));
 function myWeather(myDiv) {
     const API_URL = "https://api.openweathermap.org/data/2.5/weather?q=barcelona, ES&appid=c28c4174fb91d10f3633362559cdc9c8&units=metric";

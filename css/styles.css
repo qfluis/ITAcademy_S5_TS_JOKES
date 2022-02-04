@@ -5,18 +5,8 @@ body {
 }
 
 main {    
-    /* OLD STYLES
-    height: 800px;
-    background-image: url("/images/risitas.jpg");
-    background-repeat:no-repeat;
-    background-position:bottom right;
-    background-size:250px;
-    */
-    
     background-color: white;
-    
-    
-    
+       
     max-width: 1200px;
     margin-right: auto;
     margin-left: auto;
@@ -37,18 +27,6 @@ main {
     flex-wrap: wrap;
     padding: 3rem;
 
-    /* OLD STYLES
-    position:relative;
-    top: 2rem; 
-    border-radius: 1rem;
-    background-color: rgb(248, 255, 188);
-    max-width: 500px;
-    margin-left: auto;
-    margin-right:auto;
-    border: 0.1rem solid rgb(155, 155, 155);
-    box-shadow: 0.1rem 0.1rem 0.5rem 0.1rem rgb(155, 155, 155);
-    */
-    /* BLOB STYLES*/
     background-image: url("/images/backgrounds/0.png");
     background-size: 100%;
     background-repeat: no-repeat;
@@ -74,7 +52,6 @@ main {
 
 h1{
     text-align:center;
-    /*margin-top: 2rem;*/
 }
 
 #chiste {
@@ -90,9 +67,7 @@ h1{
     width:100%;
     display:flex;
     justify-content: center;
-    align-items: center;    
-
-    
+    align-items: center;        
 }
 
 #valoracion img {
@@ -124,7 +99,6 @@ h1{
     align-content: center;
 
     color:white;
-
 }
 #header_emoji h1 {
     margin: 1rem;

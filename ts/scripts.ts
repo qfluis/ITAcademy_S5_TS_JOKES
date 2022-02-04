@@ -7,7 +7,6 @@ interface IreportJoke {
 
 const reportJokes: IreportJoke[] = [];
 
-
 // Evento Click botón
 const btn:HTMLElement | null = document.getElementById("btn_chiste");
 btn?.addEventListener("click",cargarChiste);
@@ -80,23 +79,13 @@ function changeBackground(){
 
     imagen!.style.backgroundImage = `url('/images/backgrounds/${aleatorio}.png')`;
 }
-/*
-function switchDisplayVotes(){
-    const visible = document.getElementById("valoracion")!.style.visibility;
-    let visibility:string = (visible == "visible")?"hidden":"visible";
-        
-    document.getElementById("valoracion")!.style.visibility = visibility;
-    (<HTMLElement>document.querySelector("#contenedor_chiste h3"))!.style.visibility = visibility;
-}*/
+
 function displayVotes(visibility:string):void{
     document.getElementById("valoracion")!.style.visibility = visibility;
     (<HTMLElement>document.querySelector("#contenedor_chiste h3"))!.style.visibility = visibility;
 }
 
-
-
-
-// Weather
+// WEATHER
 
 myWeather(document.getElementById("myWeather"));
 function myWeather(myDiv: HTMLElement | null):void{
@@ -109,7 +98,5 @@ function myWeather(myDiv: HTMLElement | null):void{
             console.log(w);
             myDiv!.innerHTML = `<img src="https://openweathermap.org/img/wn/${w.weather[0].icon}.png" > <strong>| ${w.main.temp}ºC</strong>`;
             // info iconos https://openweathermap.org/weather-conditions
-        });
-    
-
+        });    
 }
