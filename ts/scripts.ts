@@ -77,7 +77,7 @@ function changeBackground(){
     } while (aleatorio == backgroundNum);
     backgroundNum = aleatorio;
 
-    imagen!.style.backgroundImage = `url('/images/backgrounds/${aleatorio}.png')`;
+    imagen!.style.backgroundImage = `url('./images/backgrounds/${aleatorio}.png')`;
 }
 
 function displayVotes(visibility:string):void{

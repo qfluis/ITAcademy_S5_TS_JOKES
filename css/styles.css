@@ -20,14 +20,12 @@ main {
 }
 
 #contenedor_chiste {
-      
-
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     padding: 3rem;
 
-    background-image: url("/images/backgrounds/0.png");
+    background-image: url("../images/backgrounds/0.png");
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center top;

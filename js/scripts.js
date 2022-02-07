@@ -62,7 +62,7 @@ function changeBackground() {
         aleatorio = Math.floor(Math.random() * 5);
     } while (aleatorio == backgroundNum);
     backgroundNum = aleatorio;
-    imagen.style.backgroundImage = `url('/images/backgrounds/${aleatorio}.png')`;
+    imagen.style.backgroundImage = `url('./images/backgrounds/${aleatorio}.png')`;
 }
 function displayVotes(visibility) {
     document.getElementById("valoracion").style.visibility = visibility;
